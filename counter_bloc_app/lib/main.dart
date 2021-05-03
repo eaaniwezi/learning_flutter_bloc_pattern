@@ -33,14 +33,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,10 +46,25 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               'You have pushed the button this many times:',
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
+            BlocConsumer<CounterCubit, CounterState>(
+                listener: (context, state) {
+              if (state.wasIncremented == true) {
+                Scaffold.of(context).showSnackBar(SnackBar(
+                  content: Text("Incremented!"),
+                  duration: Duration(milliseconds: 300),
+                ));
+              } else if (state.wasIncremented == false) {
+                Scaffold.of(context).showSnackBar(SnackBar(
+                  content: Text("Decremented!"),
+                  duration: Duration(milliseconds: 300),
+                ));
+              }
+            }, builder: (context, state) {
+              return Text(
+                state.counterValue.toString(),
+                style: Theme.of(context).textTheme.headline4,
+              );
+            }),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
