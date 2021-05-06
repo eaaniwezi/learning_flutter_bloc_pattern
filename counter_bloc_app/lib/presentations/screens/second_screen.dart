@@ -49,6 +49,7 @@ class _SecondScreenState extends State<SecondScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 FloatingActionButton(
+                  heroTag: "btn1",
                   onPressed: () {
                     BlocProvider.of<CounterCubit>(context).increment();
                   },
@@ -56,6 +57,7 @@ class _SecondScreenState extends State<SecondScreen> {
                   child: Icon(Icons.add),
                 ),
                 FloatingActionButton(
+                  heroTag: "btn2",
                   onPressed: () {
                     BlocProvider.of<CounterCubit>(context).decrement();
                   },

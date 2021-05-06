@@ -2,6 +2,7 @@ import 'package:counter_bloc_app/logic/cubit/counter_cubit.dart';
 import 'package:counter_bloc_app/presentations/screens/second_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'third_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key key, this.title, this.color}) : super(key: key);
@@ -50,6 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 FloatingActionButton(
+                  heroTag: "btn1",
                   onPressed: () {
                     BlocProvider.of<CounterCubit>(context).increment();
                   },
@@ -57,6 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Icon(Icons.add),
                 ),
                 FloatingActionButton(
+                  heroTag: "btn2",
                   onPressed: () {
                     BlocProvider.of<CounterCubit>(context).decrement();
                   },
@@ -68,14 +71,18 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(height: 10),
             MaterialButton(
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => SecondScreen(
-                          title: 'Second Screen',
-                          color: Colors.purple,
-                        )));
+                Navigator.of(context).pushNamed('/second');
               },
               color: widget.color,
               child: Text("Go to the Second Page"),
+            ),
+            SizedBox(height: 10),
+            MaterialButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed('/third');
+              },
+              color: Colors.blue,
+              child: Text("Go to the Third Page"),
             ),
           ],
         ),
