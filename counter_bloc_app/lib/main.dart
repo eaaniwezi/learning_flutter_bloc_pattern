@@ -25,7 +25,7 @@ class _MyAppState extends State<MyApp> {
     return BlocProvider<CounterCubit>(
       create: (context) => CounterCubit(),
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Flutter Bloc Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
